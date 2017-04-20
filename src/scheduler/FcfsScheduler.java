@@ -19,7 +19,7 @@ public class FcfsScheduler implements Scheduler {
 
     @Override
     public void setOs(OperatingSystem parentOs) {
-
+        this.parentOs = parentOs;
     }
 
     @Override
