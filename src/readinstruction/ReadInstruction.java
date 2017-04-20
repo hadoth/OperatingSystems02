@@ -34,4 +34,12 @@ public abstract class ReadInstruction {
     public boolean isHasDeadline() {
         return hasDeadline;
     }
+
+    @Override
+    public String toString(){
+        return this.instructionId.toString() + "'" +
+                this.readAddress + "'" +
+                this.arrivalTime + "'" +
+                this.hasDeadline + "'";
+    }
 }
