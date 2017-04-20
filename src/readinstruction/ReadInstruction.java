@@ -31,7 +31,7 @@ public abstract class ReadInstruction {
         return arrivalTime;
     }
 
-    public boolean isHasDeadline() {
+    public boolean hasDeadline() {
         return hasDeadline;
     }
 
