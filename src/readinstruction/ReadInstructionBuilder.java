@@ -15,4 +15,9 @@ public class ReadInstructionBuilder {
         this.instructionId = instructionId;
         return this;
     }
+
+    public ReadInstructionBuilder withReadAddres(int readAddres){
+        this.readAddres = readAddres;
+        return this;
+    }
 }
