@@ -17,4 +17,21 @@ public abstract class ReadInstruction {
         this.readAddres = readAddres;
         this.hasDeadline = hasDeadline;
     }
+
+
+    public UUID getInstructionId() {
+        return instructionId;
+    }
+
+    public int getReadAddres() {
+        return readAddres;
+    }
+
+    public int getArrivalTime() {
+        return arrivalTime;
+    }
+
+    public boolean isHasDeadline() {
+        return hasDeadline;
+    }
 }
