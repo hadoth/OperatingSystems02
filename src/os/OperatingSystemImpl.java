@@ -35,7 +35,7 @@ public class OperatingSystemImpl implements OperatingSystem, Observer {
 
     @Override
     public void run() {
-
+        this.systemClock.start();
     }
 
     @Override
