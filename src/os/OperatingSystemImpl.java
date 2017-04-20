@@ -47,7 +47,7 @@ public class OperatingSystemImpl implements OperatingSystem, Observer {
 
     @Override
     public void generateReport() {
-
+        //TODO: implement method
     }
 
     @Override
