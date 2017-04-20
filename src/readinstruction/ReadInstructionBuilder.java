@@ -30,4 +30,8 @@ public class ReadInstructionBuilder {
         this.hasDeadline = true;
         return this;
     }
+
+    public ReadInstructionImpl build(){
+        return new ReadInstructionImpl(this.instructionId, this.readAddress, this.arrivalTime, this.hasDeadline);
+    }
 }
