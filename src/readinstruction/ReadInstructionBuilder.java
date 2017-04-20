@@ -25,4 +25,9 @@ public class ReadInstructionBuilder {
         this.arrivalTime = arrivalTime;
         return this;
     }
+
+    public ReadInstructionBuilder withDeadline(){
+        this.hasDeadline = true;
+        return this;
+    }
 }
