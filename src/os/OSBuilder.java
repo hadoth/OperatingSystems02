@@ -54,4 +54,9 @@ public class OSBuilder {
         this.systemScheduler = systemScheduler;
         return this;
     }
+
+    public OSBuilder withConsoleOutput(){
+        this.consoleFlag = true;
+        return this;
+    }
 }
