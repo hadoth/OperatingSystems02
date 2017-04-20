@@ -11,4 +11,5 @@ public interface Scheduler extends Observer {
     void setOs(OperatingSystem parentOs);
     void push(ReadInstruction instruction);
     String getName();
+    boolean isEmpty();
 }
