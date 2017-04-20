@@ -1,7 +1,13 @@
 package readinstruction;
 
+import java.util.UUID;
+
 /**
  * Created by Karol on 2017-04-20.
  */
 public class ReadInstructionBuilder {
+    private UUID instructionId;
+    private int readAddres;
+    private int arrivalTime = 0;
+    private boolean hasDeadline = false;
 }
