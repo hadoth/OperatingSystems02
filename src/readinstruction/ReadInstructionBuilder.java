@@ -7,7 +7,7 @@ import java.util.UUID;
  */
 public class ReadInstructionBuilder {
     private UUID instructionId;
-    private int readAddres;
+    private int readAddress;
     private int arrivalTime = 0;
     private boolean hasDeadline = false;
 
@@ -16,8 +16,8 @@ public class ReadInstructionBuilder {
         return this;
     }
 
-    public ReadInstructionBuilder withReadAddres(int readAddres){
-        this.readAddres = readAddres;
+    public ReadInstructionBuilder withReadAddress(int readAddres){
+        this.readAddress = readAddres;
         return this;
     }
 }

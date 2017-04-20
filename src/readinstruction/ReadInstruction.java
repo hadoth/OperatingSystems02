@@ -7,14 +7,14 @@ import java.util.UUID;
  */
 public abstract class ReadInstruction {
     private UUID instructionId;
-    private int readAddres;
+    private int readAddress;
     private int arrivalTime;
     private boolean hasDeadline;
 
-    public ReadInstruction (UUID instructionId, int readAddres, int arrivalTime, boolean hasDeadline){
+    public ReadInstruction (UUID instructionId, int readAddress, int arrivalTime, boolean hasDeadline){
         this.arrivalTime = arrivalTime;
         this.instructionId = instructionId;
-        this.readAddres = readAddres;
+        this.readAddress = readAddress;
         this.hasDeadline = hasDeadline;
     }
 
@@ -23,8 +23,8 @@ public abstract class ReadInstruction {
         return instructionId;
     }
 
-    public int getReadAddres() {
-        return readAddres;
+    public int getReadAddress() {
+        return readAddress;
     }
 
     public int getArrivalTime() {
