@@ -42,4 +42,8 @@ public abstract class ReadInstruction {
                 this.arrivalTime + "'" +
                 this.hasDeadline + "'";
     }
+
+    public static ReadInstructionBuilder builder(){
+        return new ReadInstructionBuilder();
+    }
 }
