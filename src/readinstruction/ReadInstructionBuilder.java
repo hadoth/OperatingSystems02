@@ -10,4 +10,9 @@ public class ReadInstructionBuilder {
     private int readAddres;
     private int arrivalTime = 0;
     private boolean hasDeadline = false;
+
+    public ReadInstructionBuilder withInstructionId(UUID id){
+        this.instructionId = instructionId;
+        return this;
+    }
 }
