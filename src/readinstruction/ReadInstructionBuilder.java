@@ -20,4 +20,9 @@ public class ReadInstructionBuilder {
         this.readAddress = readAddres;
         return this;
     }
+
+    public ReadInstructionBuilder withArrivalTime(int arrivalTime){
+        this.arrivalTime = arrivalTime;
+        return this;
+    }
 }
