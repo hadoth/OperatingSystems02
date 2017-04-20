@@ -40,7 +40,9 @@ public class OperatingSystemImpl implements OperatingSystem, Observer {
 
     @Override
     public void push(ReadInstruction instruction) {
-
+        this.readResults.add(instruction);
+        if (this.consoleFlag)
+            System.out.println(this.systemClock.getTime() + "\tfinish process ID: " + instruction.getInstructionId());
     }
 
     @Override
