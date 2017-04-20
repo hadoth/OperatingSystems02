@@ -10,6 +10,7 @@ public abstract class ReadInstruction {
     private int readAddress;
     private int arrivalTime;
     private boolean hasDeadline;
+    private int waitTime;
 
     public ReadInstruction (UUID instructionId, int readAddress, int arrivalTime, boolean hasDeadline){
         this.arrivalTime = arrivalTime;
@@ -33,6 +34,11 @@ public abstract class ReadInstruction {
 
     public boolean hasDeadline() {
         return hasDeadline;
+    }
+
+    public int read(int actualTime){
+        this.waitTime = actualTime - this.readAddress;
+        return this.readAddress;
     }
 
     @Override
