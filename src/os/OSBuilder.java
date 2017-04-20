@@ -59,4 +59,13 @@ public class OSBuilder {
         this.consoleFlag = true;
         return this;
     }
+
+    public OperatingSystemImpl build() {
+        return new OperatingSystemImpl(
+                this.systemClock,
+                this.systemScheduler,
+                this.readQueue,
+                this.consoleFlag
+        );
+    }
 }
