@@ -12,9 +12,11 @@ import java.util.Queue;
 public class FcfsScheduler implements Scheduler {
     private Queue<ReadInstruction> waitingQueue;
     private OperatingSystem parentOs;
+    private int headPosition;
 
     public FcfsScheduler(){
         this.waitingQueue = new LinkedList<>();
+        this.headPosition = 0;
     }
 
     @Override
@@ -34,6 +36,11 @@ public class FcfsScheduler implements Scheduler {
 
     @Override
     public void update(int time) {
-
+        if (this.waitingQueue.peek().getReadAddress() > this.headPosition) this.headPosition++;
+        if (this.waitingQueue.peek().getReadAddress() < this.headPosition) this.headPosition--;
+        if (this.waitingQueue.peek().getReadAddress() == this.headPosition){
+            this.waitingQueue.peek().read(time);
+            this.parentOs.push(this.waitingQueue.remove());
+        }
     }
 }
