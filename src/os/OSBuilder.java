@@ -44,4 +44,14 @@ public class OSBuilder {
         }
         return this;
     }
+
+    public OSBuilder withClock(Clock systemClock){
+        this.systemClock = systemClock;
+        return this;
+    }
+
+    public OSBuilder withSystemScheduler(Scheduler systemScheduler){
+        this.systemScheduler = systemScheduler;
+        return this;
+    }
 }
