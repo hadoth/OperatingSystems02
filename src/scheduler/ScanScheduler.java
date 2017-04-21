@@ -36,7 +36,7 @@ public class ScanScheduler implements Scheduler {
 
     @Override
     public String getName() {
-        return null;
+        return "SCAN";
     }
 
     @Override
