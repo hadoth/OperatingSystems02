@@ -31,7 +31,7 @@ public class FcfsScheduler implements Scheduler {
 
     @Override
     public String getName() {
-        return null;
+        return "FCFS";
     }
 
     @Override
