@@ -9,13 +9,13 @@ import java.util.Queue;
 /**
  * Created by Karol Pokomeda on 2017-04-21.
  */
-public class ScanScheduler implements Scheduler {
+public class CScanScheduler implements Scheduler {
     private LinkedList<ReadInstruction> waitingQueue;
     private OperatingSystem parentOs;
     private int headPosition;
     private int discSize;
 
-    public ScanScheduler(int discSize){
+    public CScanScheduler(int discSize){
         this.waitingQueue = new LinkedList<>();
         this.headPosition = -1;
         this.discSize = discSize;
