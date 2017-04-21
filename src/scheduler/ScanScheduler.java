@@ -31,7 +31,7 @@ public class ScanScheduler implements Scheduler {
 
     @Override
     public void push(ReadInstruction instruction) {
-
+        this.waitingQueue.add(instruction);
     }
 
     @Override
