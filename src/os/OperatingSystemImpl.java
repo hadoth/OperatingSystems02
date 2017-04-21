@@ -55,6 +55,10 @@ public class OperatingSystemImpl implements OperatingSystem, Observer {
         this.tick(time);
     }
 
+    public static OSBuilder builder(){
+        return new OSBuilder();
+    }
+
     private void tick(int time) {
         boolean listChecked = false;
         do {
