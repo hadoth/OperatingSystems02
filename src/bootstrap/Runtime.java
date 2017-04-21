@@ -13,7 +13,8 @@ public class Runtime {
     public static void main(String[] args) {
         String directory = "./inputdata/";
         String fileName = "GOOD_IMMIDIATE_FALSE";
-        String loadPath = directory + fileName;
+        String extension = ".csv";
+        String loadPath = directory + fileName + extension;
         Clock systemClock = new Clock();
         Scheduler systemScheduler = new FcfsScheduler();
         OperatingSystem myOS =
