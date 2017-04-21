@@ -13,15 +13,26 @@ public class ScanScheduler implements Scheduler {
     private LinkedList<ReadInstruction> waitingQueue;
     private OperatingSystem parentOs;
     private int headPosition;
+    private int discSize;
 
-    public ScanScheduler(){
+    public ScanScheduler(int discSize){
         this.waitingQueue = new LinkedList<>();
-        this.headPosition = 0;
+        this.headPosition = -1;
+        this.discSize = discSize;
     }
 
     @Override
     public void update(int time) {
-
+        this.headPosition++;
+        if (this.headPosition >= this.discSize) this.headPosition = 0;
+        int i = 0;
+        ReadInstruction result;
+        while (!this.isEmpty() && (result = this.waitingQueue.get(i)).getReadAddress() > this.headPosition){
+            if(result.getReadAddress() == this.headPosition){
+                result.read(time);
+                this.parentOs.push(this.waitingQueue.remove(i));
+            } else i++;
+        }
     }
 
     @Override
