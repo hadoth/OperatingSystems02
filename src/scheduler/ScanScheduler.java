@@ -41,6 +41,6 @@ public class ScanScheduler implements Scheduler {
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return this.waitingQueue.isEmpty();
     }
 }
