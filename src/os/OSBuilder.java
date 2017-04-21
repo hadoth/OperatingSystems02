@@ -31,7 +31,7 @@ public class OSBuilder {
         try(FileReader fileIn = new FileReader(inputFile);
             Scanner dataIn = new Scanner(fileIn)){
             while(dataIn.hasNextLine()){
-                String[] processText = dataIn.nextLine().split(", ");
+                String[] processText = dataIn.nextLine().split(",");
                 result.add(new ReadInstructionImpl(
                         UUID.fromString(processText[0]),
                         Integer.parseInt(processText[1]),
