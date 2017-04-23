@@ -2,29 +2,32 @@ package scheduler;
 
 import os.OperatingSystem;
 import readinstruction.ReadInstruction;
-
-import java.util.Arrays;
 import java.util.LinkedList;
 
 /**
- * Created by Karol Pokomeda on 2017-04-21.
+ * Created by Karol Pokomeda on 2017-04-23.
  */
-public class CScanScheduler implements Scheduler {
+public class ScanScheduler implements Scheduler {
     private LinkedList<ReadInstruction> waitingQueue;
     private OperatingSystem parentOs;
     private int headPosition;
     private int discSize;
+    private int increment;
 
-    public CScanScheduler(int discSize){
+    public ScanScheduler(int discSize){
         this.waitingQueue = new LinkedList<>();
-        this.headPosition = -1;
+        this.headPosition = 1;
+        this.increment = -1;
         this.discSize = discSize;
     }
 
     @Override
     public void update(int time) {
-        this.headPosition++;
-        if (this.headPosition > this.discSize) this.headPosition = -discSize;
+        this.headPosition += increment;
+
+        if (this.headPosition > this.discSize || this.headPosition <= 0) {
+            this.increment = -increment;
+        }
         ReadInstruction result;
         for (int i = 0; i < this.waitingQueue.size() && !this.isEmpty() && this.headPosition >= 0; i++){
             result = this.waitingQueue.get(i);
@@ -32,7 +35,7 @@ public class CScanScheduler implements Scheduler {
                 result.read(time);
                 this.parentOs.push(this.waitingQueue.remove(i));
                 i--;
-            } else if(result.getReadAddress() > this.headPosition) break;
+            } else if(result.getReadAddress() > this.headPosition) break;;
         }
     }
 
@@ -61,7 +64,7 @@ public class CScanScheduler implements Scheduler {
 
     @Override
     public String getName() {
-        return "C-SCAN";
+        return "SCAN";
     }
 
     @Override
