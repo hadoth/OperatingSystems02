@@ -73,7 +73,6 @@ public class OperatingSystemImpl implements OperatingSystem, Observer {
         if (this.readQueue.isEmpty() &&
                 this.systemScheduler.isEmpty()) {
             this.systemClock.stop();
-
         }
     }
 }

@@ -24,14 +24,18 @@ public class CScanScheduler implements Scheduler {
     @Override
     public void update(int time) {
         this.headPosition++;
-        if (this.headPosition >= this.discSize) this.headPosition = 0;
-        int i = 0;
+        if (this.headPosition == 0){
+            System.out.println("Start");
+        }
+        if (this.headPosition >= this.discSize) this.headPosition = -discSize;
         ReadInstruction result;
-        while (!this.isEmpty() && (result = this.waitingQueue.get(i)).getReadAddress() > this.headPosition){
+        for (int i = 0; i < this.waitingQueue.size() && !this.isEmpty() && this.headPosition >= 0; i++){
+            result = this.waitingQueue.get(i);
             if(result.getReadAddress() == this.headPosition){
                 result.read(time);
                 this.parentOs.push(this.waitingQueue.remove(i));
-            } else i++;
+                i--;
+            } else if(result.getReadAddress() > this.headPosition) break;;
         }
     }
 
@@ -44,9 +48,16 @@ public class CScanScheduler implements Scheduler {
     public void push(ReadInstruction instruction) {
         if (this.isEmpty()) this.waitingQueue.add(instruction);
         else {
-            int i = 0;
-            while (instruction.getReadAddress() < this.waitingQueue.get(i).getReadAddress()) i++;
-            this.waitingQueue.add(i, instruction);
+            boolean isInserted = false;
+            int indexToSet = 0;
+            for (int i = 0; !isInserted && i < this.waitingQueue.size(); i++){
+                if (this.waitingQueue.get(i).getReadAddress() < instruction.getReadAddress()){
+                    indexToSet = i+1;
+                } else {
+                    this.waitingQueue.add(indexToSet, instruction);
+                }
+            }
+            if (!isInserted) this.waitingQueue.add(instruction);
         }
     }
 

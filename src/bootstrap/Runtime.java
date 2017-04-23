@@ -2,6 +2,7 @@ package bootstrap;
 
 import os.OperatingSystem;
 import os.OperatingSystemImpl;
+import scheduler.CScanScheduler;
 import scheduler.FcfsScheduler;
 import scheduler.Scheduler;
 import utils.Clock;
@@ -16,7 +17,8 @@ public class Runtime {
         String extension = ".csv";
         String loadPath = directory + fileName + extension;
         Clock systemClock = new Clock();
-        Scheduler systemScheduler = new FcfsScheduler();
+//        Scheduler systemScheduler = new FcfsScheduler();
+        Scheduler systemScheduler = new CScanScheduler(1024);
         OperatingSystem myOS =
                 OperatingSystemImpl.builder()
                         .withClock(systemClock)
