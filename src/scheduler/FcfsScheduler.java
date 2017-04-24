@@ -40,7 +40,8 @@ public class FcfsScheduler implements Scheduler {
     }
 
     @Override
-    public void update(int time) {
+    public void update(int time){
+        if (this.waitingQueue.isEmpty()) return;
         if (this.waitingQueue.peek().getReadAddress() > this.headPosition) this.headPosition++;
         if (this.waitingQueue.peek().getReadAddress() < this.headPosition) this.headPosition--;
         if (this.waitingQueue.peek().getReadAddress() == this.headPosition){

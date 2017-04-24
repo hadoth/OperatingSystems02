@@ -28,8 +28,9 @@ public class OSBuilder {
     public OSBuilder withInstructionsSource(String filePath){
         Queue<ReadInstruction> result = new LinkedList<>();
         File inputFile = new File(filePath);
-        try(FileReader fileIn = new FileReader(inputFile);
-            Scanner dataIn = new Scanner(fileIn)){
+        try{
+            FileReader fileIn = new FileReader(inputFile);
+            Scanner dataIn = new Scanner(fileIn)
             while(dataIn.hasNextLine()){
                 String[] processText = dataIn.nextLine().split(";");
                 result.add(new ReadInstructionImpl(
@@ -39,6 +40,7 @@ public class OSBuilder {
                         Boolean.parseBoolean(processText[3])));
             }
             this.readQueue = result;
+            if ()
         } catch (IOException e){
             throw new IllegalArgumentException("File not found or data corrupted");
         }

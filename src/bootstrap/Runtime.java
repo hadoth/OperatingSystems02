@@ -1,11 +1,9 @@
 package bootstrap;
 
+import com.sun.org.apache.xerces.internal.impl.xs.SchemaGrammar;
 import os.OperatingSystem;
 import os.OperatingSystemImpl;
-import scheduler.CScanScheduler;
-import scheduler.FcfsScheduler;
-import scheduler.ScanScheduler;
-import scheduler.Scheduler;
+import scheduler.*;
 import utils.Clock;
 
 /**
@@ -18,16 +16,25 @@ public class Runtime {
         String extension = ".csv";
         String loadPath = directory + fileName + extension;
         Clock systemClock = new Clock();
-//        Scheduler systemScheduler = new FcfsScheduler();
-//        Scheduler systemScheduler = new ScanScheduler(1024);
-        Scheduler systemScheduler = new ScanScheduler(1024);
-        OperatingSystem myOS =
-                OperatingSystemImpl.builder()
-                        .withClock(systemClock)
-                        .withSystemScheduler(systemScheduler)
-                        .withInstructionsSource(loadPath)
-                        .withConsoleOutput()
-                        .build();
-        myOS.run();
+        Scheduler[] systemSchedulers = {
+                new FcfsScheduler(),
+                new ScanScheduler(1024),
+                new CScanScheduler(1024),
+                new SstfScheduler(false),
+                new SstfScheduler(true)
+        };
+        OperatingSystem myOS;
+        for (Scheduler systemScheduler : systemSchedulers) {
+            System.out.println("\n" + systemScheduler.getName() + "\n");
+            myOS = OperatingSystemImpl.builder()
+                    .withClock(systemClock)
+                    .withSystemScheduler(systemScheduler)
+                    .withInstructionsSource(loadPath)
+                    .withConsoleOutput()
+                    .build();
+            myOS.run();
+            systemClock.reset();
+            System.out.println("\n\n");
+        }
     }
 }
