@@ -41,6 +41,7 @@ public class Clock implements Observable {
     }
 
     public void reset(){
+        this.observerList.clear();
         this.stop();
         this.time = 0;
     }
