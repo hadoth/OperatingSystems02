@@ -31,17 +31,16 @@ public class Runtime {
 
         OperatingSystem myOS;
         for (Scheduler systemScheduler : systemSchedulers) {
-            System.out.println("\n" + systemScheduler.getName() + "\n");
             myOS = OperatingSystemImpl.builder()
                     .withClock(systemClock)
                     .withSystemScheduler(systemScheduler)
                     .withReadInstructions(instructionList)
-                    .withConsoleOutput()
+//                    .withConsoleOutput()
                     .build();
             myOS.run();
             systemClock.reset();
-            System.out.println();
             System.out.println(myOS.generateReport(loadPath));
+            System.out.println();
             System.out.println();
         }
     }
