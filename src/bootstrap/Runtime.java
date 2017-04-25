@@ -40,7 +40,9 @@ public class Runtime {
                     .build();
             myOS.run();
             systemClock.reset();
-            System.out.println("\n\n");
+            System.out.println();
+            System.out.println(myOS.generateReport(loadPath));
+            System.out.println();
         }
     }
 }

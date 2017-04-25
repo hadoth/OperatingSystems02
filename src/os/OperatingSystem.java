@@ -8,5 +8,6 @@ import readinstruction.ReadInstruction;
 public interface OperatingSystem {
     void run();
     void push(ReadInstruction instruction);
-    void generateReport();
+    void saveReport(String path);
+    String generateReport(String path);
 }

@@ -44,6 +44,10 @@ public abstract class ReadInstruction {
         return this.readAddress;
     }
 
+    public int getWaitTime(){
+        return this.waitTime;
+    }
+
     @Override
     public String toString(){
         return this.instructionId.toString() + "'" +
