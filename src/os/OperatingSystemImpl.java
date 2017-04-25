@@ -101,7 +101,7 @@ public class OperatingSystemImpl implements OperatingSystem, Observer {
         String[] description = path.replace(".csv", "").split("_");
 
 
-        resultBuilder.append("DISC READ REPORT\n\n");
+        resultBuilder.append("DISC READ REPORT\n");
         resultBuilder.append("Scheduler:\t\t\t\t\t\t");
         resultBuilder.append(this.systemScheduler.getName());
         resultBuilder.append("\nRead location trend:\t\t\t" );
@@ -110,10 +110,10 @@ public class OperatingSystemImpl implements OperatingSystem, Observer {
         resultBuilder.append(description[1]);
         resultBuilder.append("\nHas priority instructions:\t\t");
         resultBuilder.append(description[2]);
-        if (!priorityWaitTimeList.isEmpty())resultBuilder.append("STANDARD PROCESSES");
+        if (!priorityWaitTimeList.isEmpty())resultBuilder.append("\nSTANDARD PROCESSES");
         resultBuilder.append(String.format("\nMean wait time:\t\t\t\t\t%.3f +- %.3f (MAX: %d)", waitTimeMean, waitTimeDeviation, waitTimeMax));
-        if (!priorityWaitTimeList.isEmpty())resultBuilder.append("PRIORITY PROCESSES");
-        if (!priorityWaitTimeList.isEmpty())resultBuilder.append(String.format("Mean wait time:\t\t\t%.3f +- %.3f (MAX: %d)", priorityWaitTimeMean, priorityWaitTimeDeviation, priorityWaitTimeMax));
+        if (!priorityWaitTimeList.isEmpty())resultBuilder.append("\nPRIORITY PROCESSES\n");
+        if (!priorityWaitTimeList.isEmpty())resultBuilder.append(String.format("Mean wait time:\t\t\t\t\t%.3f +- %.3f (MAX: %d)", priorityWaitTimeMean, priorityWaitTimeDeviation, priorityWaitTimeMax));
 
         return resultBuilder.toString();
     }
