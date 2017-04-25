@@ -15,7 +15,7 @@ import java.util.List;
 public class Runtime {
     public static void main(String[] args) {
         String directory = "./inputdata/";
-        String fileName = "RAND_CONST_FALSE";
+        String fileName = "RAND_CONST_TRUE";
         String extension = ".csv";
         String loadPath = directory + fileName + extension;
         Clock systemClock = new Clock();
