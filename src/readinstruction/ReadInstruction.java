@@ -40,7 +40,7 @@ public abstract class ReadInstruction {
     }
 
     public int read(int actualTime){
-        this.waitTime = actualTime - this.readAddress;
+        this.waitTime = actualTime - this.arrivalTime;
         return this.readAddress;
     }
 
