@@ -112,8 +112,8 @@ public class OperatingSystemImpl implements OperatingSystem, Observer {
         resultBuilder.append(description[2]);
         if (!priorityWaitTimeList.isEmpty())resultBuilder.append("STANDARD PROCESSES");
         resultBuilder.append(String.format("\nMean wait time:\t\t\t\t\t%.3f +- %.3f (MAX: %d)", waitTimeMean, waitTimeDeviation, waitTimeMax));
-        if (!priorityWaitTimeList.isEmpty())resultBuilder.append("PRIORITY PROCESSES");
-        if (!priorityWaitTimeList.isEmpty())resultBuilder.append(String.format("Mean wait time:\t\t\t%.3f +- %.3f (MAX: %d)", priorityWaitTimeMean, priorityWaitTimeDeviation, priorityWaitTimeMax));
+        if (!priorityWaitTimeList.isEmpty())resultBuilder.append("\nPRIORITY PROCESSES\n");
+        if (!priorityWaitTimeList.isEmpty())resultBuilder.append(String.format("Mean wait time:\t\t\t\t\t%.3f +- %.3f (MAX: %d)", priorityWaitTimeMean, priorityWaitTimeDeviation, priorityWaitTimeMax));
 
         return resultBuilder.toString();
     }
@@ -131,8 +131,11 @@ public class OperatingSystemImpl implements OperatingSystem, Observer {
         boolean listChecked = false;
         do {
             if (!this.readQueue.isEmpty() && this.readQueue.peek().getArrivalTime() == time) {
-                if (this.consoleFlag)
-                    System.out.println(time + "\tload process; ID: " + this.readQueue.peek().getInstructionId());
+                if (this.consoleFlag) {
+                    System.out.print(time + "\tload process; ID: " + this.readQueue.peek().getInstructionId());
+                    if (readQueue.peek().hasDeadline()) System.out.println("\t*\n");
+                    else System.out.println();
+                }
                 this.systemScheduler.push(this.readQueue.remove());
             } else {
                 listChecked = true;

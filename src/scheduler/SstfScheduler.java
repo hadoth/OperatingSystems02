@@ -15,11 +15,11 @@ public class SstfScheduler implements Scheduler {
     private int increment;
     private boolean allowsInterruptions;
 
-    public SstfScheduler(boolean allowsImterruptions){
+    public SstfScheduler(boolean allowsInterruptions){
         this.waitingQueue = new LinkedList<>();
         this.headPosition = 0;
         this.increment = 0;
-        this.allowsInterruptions = allowsImterruptions;
+        this.allowsInterruptions = allowsInterruptions;
     }
 
     @Override

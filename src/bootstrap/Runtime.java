@@ -21,11 +21,13 @@ public class Runtime {
         Clock systemClock = new Clock();
         List<ReadInstruction> instructionList = ReadInstruction.parseList(loadPath);
         Scheduler[] systemSchedulers = {
-                new FcfsScheduler(),
-                new ScanScheduler(1024),
-                new CScanScheduler(1024),
+//                new FcfsScheduler(),
+//                new ScanScheduler(1024),
+//                new CScanScheduler(1024),
                 new SstfScheduler(false),
-                new SstfScheduler(true)
+                new SstfScheduler(true),
+                new EdfScheduler(false),
+                new EdfScheduler(true)
         };
 
 
