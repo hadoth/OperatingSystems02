@@ -13,17 +13,20 @@ public class ScanScheduler implements Scheduler {
     private int headPosition;
     private int discSize;
     private int increment;
+    private int headPositionMove;
 
     public ScanScheduler(int discSize){
         this.waitingQueue = new LinkedList<>();
         this.headPosition = 1;
         this.increment = -1;
+        this.headPositionMove = 0;
         this.discSize = discSize;
     }
 
     @Override
     public void update(int time) {
         this.headPosition += increment;
+        this.headPositionMove++;
 
         if (this.headPosition > this.discSize || this.headPosition <= 0) {
             this.increment = -increment;
@@ -60,6 +63,11 @@ public class ScanScheduler implements Scheduler {
             }
             if (!isInserted) this.waitingQueue.add(instruction);
         }
+    }
+
+    @Override
+    public int getHeadPositionMove() {
+        return this.headPositionMove;
     }
 
     @Override

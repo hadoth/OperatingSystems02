@@ -14,16 +14,19 @@ public class CScanScheduler implements Scheduler {
     private OperatingSystem parentOs;
     private int headPosition;
     private int discSize;
+    private int headPositionMove;
 
     public CScanScheduler(int discSize){
         this.waitingQueue = new LinkedList<>();
         this.headPosition = -1;
+        this.headPositionMove = 0;
         this.discSize = discSize;
     }
 
     @Override
     public void update(int time) {
         this.headPosition++;
+        this.headPositionMove++;
         if (this.headPosition > this.discSize) this.headPosition = -discSize;
         ReadInstruction result;
         for (int i = 0; i < this.waitingQueue.size() && !this.isEmpty() && this.headPosition >= 0; i++){
@@ -67,5 +70,10 @@ public class CScanScheduler implements Scheduler {
     @Override
     public boolean isEmpty() {
         return this.waitingQueue.isEmpty();
+    }
+
+    @Override
+    public int getHeadPositionMove() {
+        return this.headPositionMove;
     }
 }

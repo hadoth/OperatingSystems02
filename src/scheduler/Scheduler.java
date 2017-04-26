@@ -12,4 +12,5 @@ public interface Scheduler extends Observer {
     void push(ReadInstruction instruction);
     String getName();
     boolean isEmpty();
+    int getHeadPositionMove();
 }

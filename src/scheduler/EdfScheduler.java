@@ -14,17 +14,20 @@ public class EdfScheduler implements Scheduler {
     private int headPosition;
     private int increment;
     private boolean allowsInterruptions;
+    private int headPositionMove;
 
     public EdfScheduler(boolean allowsInterruptions){
         this.waitingQueue = new LinkedList<>();
         this.headPosition = 0;
         this.increment = 0;
+        this.headPositionMove = 0;
         this.allowsInterruptions = allowsInterruptions;
     }
 
     @Override
     public void update(int time) {
         this.headPosition += this.increment;
+        this.headPositionMove++;
         ReadInstruction result;
         boolean readSuccess = false;
         for (int i = 0; i < this.waitingQueue.size(); i++){
@@ -61,6 +64,11 @@ public class EdfScheduler implements Scheduler {
             if (!isInserted) this.waitingQueue.add(instruction);
         }
         if (allowsInterruptions || this.increment == 0) this.setDirection();
+    }
+
+    @Override
+    public int getHeadPositionMove() {
+        return this.headPositionMove;
     }
 
     private void setDirection(){
