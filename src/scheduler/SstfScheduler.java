@@ -17,7 +17,7 @@ public class SstfScheduler implements Scheduler {
 
     public SstfScheduler(boolean allowsInterruptions){
         this.waitingQueue = new LinkedList<>();
-        this.headPosition = 0;
+        this.headPosition = -1;
         this.increment = 0;
         this.allowsInterruptions = allowsInterruptions;
     }

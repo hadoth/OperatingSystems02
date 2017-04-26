@@ -87,6 +87,9 @@ public class EdfScheduler implements Scheduler {
                     isNextImportant = true;
                     break;
                 }
+            } else {
+                this.increment = 0;
+                return;
             }
         }
         int distanceDown = this.headPosition - previous;

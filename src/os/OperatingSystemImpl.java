@@ -110,7 +110,7 @@ public class OperatingSystemImpl implements OperatingSystem, Observer {
         resultBuilder.append(description[1]);
         resultBuilder.append("\nHas priority instructions:\t\t");
         resultBuilder.append(description[2]);
-        if (!priorityWaitTimeList.isEmpty())resultBuilder.append("STANDARD PROCESSES");
+        if (!priorityWaitTimeList.isEmpty())resultBuilder.append("\nSTANDARD PROCESSES");
         resultBuilder.append(String.format("\nMean wait time:\t\t\t\t\t%.3f +- %.3f (MAX: %d)", waitTimeMean, waitTimeDeviation, waitTimeMax));
         if (!priorityWaitTimeList.isEmpty())resultBuilder.append("\nPRIORITY PROCESSES\n");
         if (!priorityWaitTimeList.isEmpty())resultBuilder.append(String.format("Mean wait time:\t\t\t\t\t%.3f +- %.3f (MAX: %d)", priorityWaitTimeMean, priorityWaitTimeDeviation, priorityWaitTimeMax));
