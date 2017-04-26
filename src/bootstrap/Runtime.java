@@ -15,35 +15,45 @@ import java.util.List;
 public class Runtime {
     public static void main(String[] args) {
         String directory = "./inputdata/";
-        String fileName = "RAND_CONST_TRUE";
+        String[] fileNames = {
+                "GOOD_IMMIDIATE_FALSE",
+                "BAD_IMMIDIATE_FALSE",
+                "RAND_IMMIDIATE_FALSE",
+                "GOOD_CONST_TRUE",
+                "BAD_CONST_TRUE",
+                "RAND_CONST_TRUE"
+        };
         String extension = ".csv";
-        String loadPath = directory + fileName + extension;
         Clock systemClock = new Clock();
-        List<ReadInstruction> instructionList = ReadInstruction.parseList(loadPath);
-        Scheduler[] systemSchedulers = {
-//                new FcfsScheduler(),
-//                new ScanScheduler(1024),
-//                new CScanScheduler(1024),
+
+        for (String fileName : fileNames) {
+            String loadPath = directory + fileName + extension;
+            List<ReadInstruction> instructionList = ReadInstruction.parseList(loadPath);
+            Scheduler[] systemSchedulers = {
+                new FcfsScheduler(),
+                new ScanScheduler(1024),
+                new CScanScheduler(1024),
                 new SstfScheduler(false),
                 new SstfScheduler(true),
                 new EdfScheduler(false),
                 new EdfScheduler(true)
-        };
+            };
 
 
-        OperatingSystem myOS;
-        for (Scheduler systemScheduler : systemSchedulers) {
-            myOS = OperatingSystemImpl.builder()
-                    .withClock(systemClock)
-                    .withSystemScheduler(systemScheduler)
-                    .withReadInstructions(instructionList)
-//                    .withConsoleOutput()
-                    .build();
-            myOS.run();
-            systemClock.reset();
-            System.out.println(myOS.generateReport(loadPath));
-            System.out.println();
-            System.out.println();
+            OperatingSystem myOS;
+            for (Scheduler systemScheduler : systemSchedulers) {
+                myOS = OperatingSystemImpl.builder()
+                        .withClock(systemClock)
+                        .withSystemScheduler(systemScheduler)
+                        .withReadInstructions(instructionList)
+//                        .withConsoleOutput()
+                        .build();
+                myOS.run();
+                systemClock.reset();
+                System.out.println(myOS.generateReport(loadPath));
+                System.out.println();
+                System.out.println();
+            }
         }
     }
 }
