@@ -29,6 +29,7 @@ public class EdfScheduler implements Scheduler {
     @Override
     public void update(int time) {
         this.headPosition += this.increment;
+        if (increment != 0) this.headWay++;
         ReadInstruction result;
         boolean readSuccess = false;
         for (int i = 0; i < this.waitingQueue.size(); i++){

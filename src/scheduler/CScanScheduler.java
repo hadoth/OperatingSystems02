@@ -27,6 +27,7 @@ public class CScanScheduler implements Scheduler {
     @Override
     public void update(int time) {
         this.headPosition++;
+        this.headWay++;
         if (this.headPosition > this.discSize) this.headPosition = -discSize;
         ReadInstruction result;
         for (int i = 0; i < this.waitingQueue.size() && !this.isEmpty() && this.headPosition >= 0; i++){

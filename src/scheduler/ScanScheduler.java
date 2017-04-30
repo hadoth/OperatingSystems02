@@ -28,6 +28,7 @@ public class ScanScheduler implements Scheduler {
     @Override
     public void update(int time) {
         this.headPosition += increment;
+        this.headWay++;
 
         if (this.headPosition > this.discSize || this.headPosition <= 0) {
             this.increment = -increment;
