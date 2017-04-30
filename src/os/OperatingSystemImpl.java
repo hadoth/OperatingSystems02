@@ -129,18 +129,20 @@ public class OperatingSystemImpl implements OperatingSystem, Observer {
 
     private void tick(int time) {
         boolean listChecked = false;
-        do {
-            if (!this.readQueue.isEmpty() && this.readQueue.peek().getArrivalTime() == time) {
-                if (this.consoleFlag) {
-                    System.out.print(time + "\tload process; ID: " + this.readQueue.peek().getInstructionId());
-                    if (readQueue.peek().hasDeadline()) System.out.println("\t*\n");
-                    else System.out.println();
+        if (this.systemScheduler.isEmpty()) {
+            do {
+                if (!this.readQueue.isEmpty() && this.readQueue.peek().getArrivalTime() <= time) {
+                    if (this.consoleFlag) {
+                        System.out.print(time + "\tload process; ID: " + this.readQueue.peek().getInstructionId());
+                        if (readQueue.peek().hasDeadline()) System.out.println("\t*\n");
+                        else System.out.println();
+                    }
+                    this.systemScheduler.push(this.readQueue.remove());
+                } else {
+                    listChecked = true;
                 }
-                this.systemScheduler.push(this.readQueue.remove());
-            } else {
-                listChecked = true;
-            }
-        } while (!listChecked && this.readQueue.size() > 0);
+            } while (!listChecked && this.readQueue.size() > 0 && !this.systemScheduler.isFull());
+        }
         if (this.readQueue.isEmpty() &&
                 this.systemScheduler.isEmpty()) {
             this.systemClock.stop();
