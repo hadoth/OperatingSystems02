@@ -14,11 +14,13 @@ public class CScanScheduler implements Scheduler {
     private OperatingSystem parentOs;
     private int headPosition;
     private int discSize;
+    private int cahcheSize;
 
     public CScanScheduler(int discSize){
         this.waitingQueue = new LinkedList<>();
         this.headPosition = -1;
         this.discSize = discSize;
+        this.cahcheSize = 64;
     }
 
     @Override
@@ -67,5 +69,10 @@ public class CScanScheduler implements Scheduler {
     @Override
     public boolean isEmpty() {
         return this.waitingQueue.isEmpty();
+    }
+
+    @Override
+    public boolean isFull() {
+        return this.waitingQueue.size() >= this.cahcheSize;
     }
 }

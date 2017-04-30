@@ -13,10 +13,12 @@ public class FcfsScheduler implements Scheduler {
     private Queue<ReadInstruction> waitingQueue;
     private OperatingSystem parentOs;
     private int headPosition;
+    private int cahcheSize;
 
     public FcfsScheduler(){
         this.waitingQueue = new LinkedList<>();
         this.headPosition = 0;
+        this.cahcheSize = 64;
     }
 
     @Override
@@ -48,5 +50,10 @@ public class FcfsScheduler implements Scheduler {
             this.waitingQueue.peek().read(time);
             this.parentOs.push(this.waitingQueue.remove());
         }
+    }
+
+    @Override
+    public boolean isFull() {
+        return this.waitingQueue.size() >= this.cahcheSize;
     }
 }

@@ -14,12 +14,14 @@ public class SstfScheduler implements Scheduler {
     private int headPosition;
     private int increment;
     private boolean allowsInterruptions;
+    private int cahcheSize;
 
     public SstfScheduler(boolean allowsInterruptions){
         this.waitingQueue = new LinkedList<>();
         this.headPosition = -1;
         this.increment = 0;
         this.allowsInterruptions = allowsInterruptions;
+        this.cahcheSize = 64;
     }
 
     @Override
@@ -109,5 +111,10 @@ public class SstfScheduler implements Scheduler {
     @Override
     public boolean isEmpty() {
         return this.waitingQueue.isEmpty();
+    }
+
+    @Override
+    public boolean isFull() {
+        return this.waitingQueue.size() >= this.cahcheSize;
     }
 }

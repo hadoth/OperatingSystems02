@@ -14,12 +14,14 @@ public class EdfScheduler implements Scheduler {
     private int headPosition;
     private int increment;
     private boolean allowsInterruptions;
+    private int cahcheSize;
 
     public EdfScheduler(boolean allowsInterruptions){
         this.waitingQueue = new LinkedList<>();
         this.headPosition = 0;
         this.increment = 0;
         this.allowsInterruptions = allowsInterruptions;
+        this.cahcheSize = 64;
     }
 
     @Override
@@ -123,5 +125,10 @@ public class EdfScheduler implements Scheduler {
     @Override
     public boolean isEmpty() {
         return this.waitingQueue.isEmpty();
+    }
+
+    @Override
+    public boolean isFull() {
+        return this.waitingQueue.size() >= this.cahcheSize;
     }
 }

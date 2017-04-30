@@ -13,12 +13,14 @@ public class ScanScheduler implements Scheduler {
     private int headPosition;
     private int discSize;
     private int increment;
+    private int cahcheSize;
 
     public ScanScheduler(int discSize){
         this.waitingQueue = new LinkedList<>();
         this.headPosition = 1;
         this.increment = -1;
         this.discSize = discSize;
+        this.cahcheSize = 64;
     }
 
     @Override
@@ -70,5 +72,10 @@ public class ScanScheduler implements Scheduler {
     @Override
     public boolean isEmpty() {
         return this.waitingQueue.isEmpty();
+    }
+
+    @Override
+    public boolean isFull() {
+        return this.waitingQueue.size() >= this.cahcheSize;
     }
 }
