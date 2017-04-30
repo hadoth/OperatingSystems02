@@ -13,13 +13,13 @@ public class FcfsScheduler implements Scheduler {
     private Queue<ReadInstruction> waitingQueue;
     private OperatingSystem parentOs;
     private int headPosition;
-    private int cahcheSize;
+    private int cacheSize;
     private int headWay;
 
     public FcfsScheduler(){
         this.waitingQueue = new LinkedList<>();
         this.headPosition = 0;
-        this.cahcheSize = 64;
+        this.cacheSize = 64;
         this.headWay = 0;
     }
 
@@ -56,7 +56,7 @@ public class FcfsScheduler implements Scheduler {
 
     @Override
     public boolean isFull() {
-        return this.waitingQueue.size() >= this.cahcheSize;
+        return this.waitingQueue.size() >= this.cacheSize;
     }
 
     @Override

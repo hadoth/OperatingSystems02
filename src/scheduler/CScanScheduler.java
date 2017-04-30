@@ -3,7 +3,6 @@ package scheduler;
 import os.OperatingSystem;
 import readinstruction.ReadInstruction;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 
 /**
@@ -14,14 +13,14 @@ public class CScanScheduler implements Scheduler {
     private OperatingSystem parentOs;
     private int headPosition;
     private int discSize;
-    private int cahcheSize;
+    private int cacheSize;
     private int headWay;
 
     public CScanScheduler(int discSize){
         this.waitingQueue = new LinkedList<>();
         this.headPosition = -1;
         this.discSize = discSize;
-        this.cahcheSize = 64;
+        this.cacheSize = 64;
         this.headWay = 0;
     }
 
@@ -75,7 +74,7 @@ public class CScanScheduler implements Scheduler {
 
     @Override
     public boolean isFull() {
-        return this.waitingQueue.size() >= this.cahcheSize;
+        return this.waitingQueue.size() >= this.cacheSize;
     }
 
     @Override

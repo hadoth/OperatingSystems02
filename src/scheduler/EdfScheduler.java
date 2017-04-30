@@ -14,7 +14,7 @@ public class EdfScheduler implements Scheduler {
     private int headPosition;
     private int increment;
     private boolean allowsInterruptions;
-    private int cahcheSize;
+    private int cacheSize;
     private int headWay;
 
     public EdfScheduler(boolean allowsInterruptions){
@@ -22,7 +22,7 @@ public class EdfScheduler implements Scheduler {
         this.headPosition = 0;
         this.increment = 0;
         this.allowsInterruptions = allowsInterruptions;
-        this.cahcheSize = 64;
+        this.cacheSize = 64;
         this.headWay = 0;
     }
 
@@ -131,7 +131,7 @@ public class EdfScheduler implements Scheduler {
 
     @Override
     public boolean isFull() {
-        return this.waitingQueue.size() >= this.cahcheSize;
+        return this.waitingQueue.size() >= this.cacheSize;
     }
 
     @Override
