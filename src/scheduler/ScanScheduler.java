@@ -14,6 +14,7 @@ public class ScanScheduler implements Scheduler {
     private int discSize;
     private int increment;
     private int cahcheSize;
+    private int headWay;
 
     public ScanScheduler(int discSize){
         this.waitingQueue = new LinkedList<>();
@@ -21,6 +22,7 @@ public class ScanScheduler implements Scheduler {
         this.increment = -1;
         this.discSize = discSize;
         this.cahcheSize = 64;
+        this.headWay = 0;
     }
 
     @Override
@@ -77,5 +79,10 @@ public class ScanScheduler implements Scheduler {
     @Override
     public boolean isFull() {
         return this.waitingQueue.size() >= this.cahcheSize;
+    }
+
+    @Override
+    public int getHeadWay() {
+        return this.headWay;
     }
 }
