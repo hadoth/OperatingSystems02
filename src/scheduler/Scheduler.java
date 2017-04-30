@@ -13,4 +13,5 @@ public interface Scheduler extends Observer {
     String getName();
     boolean isEmpty();
     boolean isFull();
+    int getHeadWay();
 }
